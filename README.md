@@ -4,8 +4,9 @@ A .NET MAUI application for controlling TP-Link Tapo smart devices built with .N
 
 ## Features
 
-- **Device Discovery**: Automatically discover Tapo devices on your local network
+- **Device Discovery**: Automatically discover Tapo devices on your local network using multiple methods
 - **Device Control**: Turn devices on/off, adjust brightness, change colors
+- **Video Streaming**: Live RTSP video streaming from Tapo cameras with full-screen player
 - **Energy Monitoring**: View power consumption and energy usage (for supported devices)
 - **Cross-Platform**: Runs on Android, iOS, Windows, and macOS with native performance
 - **Modern UI**: Responsive design with dark/light theme support and touch-friendly controls
@@ -163,12 +164,23 @@ https://IP-Address:443/
 - Consider network segmentation for camera traffic
 - Regularly update camera firmware through the Tapo app
 
-### Troubleshooting Camera Control
+### Video Streaming Features
 
-If device discovery works but camera control fails:
-1. ✅ **Discovery working** = Camera is on network and responding
-2. ❌ **Control failing** = Local camera account not created or wrong credentials
-3. 🔧 **Solution** = Create/verify local camera account in Tapo mobile app
+**Live Camera Streaming:**
+- **RTSP Protocol**: High-quality video streaming over local network
+- **Multiple Resolutions**: Automatic quality selection (1080p preferred)
+- **Full-Screen Player**: Dedicated video player page with media controls
+- **Stream Controls**: Start/stop streaming with live status indicators
+- **Secure Authentication**: Uses local camera credentials for stream access
+
+**Stream URLs Used:**
+- High Quality: `rtsp://username:password@camera-ip:554/stream1`
+- Standard Quality: `rtsp://username:password@camera-ip:554/stream2` (fallback)
+
+**Camera Controls:**
+- "Start/Stop Stream" - Toggle streaming on/off
+- "View Stream" - Open full-screen video player
+- Live status indicator (🔴 Live / ⚫ Offline)
 
 ## Architecture
 
@@ -318,6 +330,23 @@ The tool provides detailed output showing discovery methods, device responses, a
 ## Troubleshooting
 
 ### Common Issues
+
+**Camera Control Issues:**
+If device discovery works but camera control fails:
+1. ✅ **Discovery working** = Camera is on network and responding
+2. ❌ **Control failing** = Local camera account not created or wrong credentials
+3. 🔧 **Solution** = Create/verify local camera account in Tapo mobile app
+
+**Video Streaming Issues:**
+If camera is discovered but streaming fails:
+1. ✅ **Camera found** = Network communication working
+2. ❌ **Stream failing** = Authentication or RTSP connectivity issue
+3. 🔧 **Solutions**:
+   - Verify local camera credentials are entered correctly
+   - Check if RTSP is enabled in camera settings (usually enabled by default)
+   - Ensure port 554 is not blocked by firewall
+   - Try both high quality (stream1) and standard quality (stream2) URLs
+   - Test stream URL in VLC player: `rtsp://username:password@camera-ip:554/stream1`
 
 1. **No Devices Found**
    - Use the **Network Discovery Tool** in `Tools/` directory to diagnose discovery issues

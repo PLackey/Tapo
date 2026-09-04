@@ -87,3 +87,83 @@ public class ColorToColorConverter : IValueConverter
         };
     }
 }
+
+public class StreamButtonTextConverter : IValueConverter
+{
+    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+    {
+        if (parameter?.ToString() == "loading" && value is bool isLoading && isLoading)
+            return "Connecting...";
+        
+        return value is bool isStreaming && isStreaming ? "Stop Stream" : "Start Stream";
+    }
+
+    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
+
+public class StreamButtonColorConverter : IValueConverter
+{
+    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+    {
+        if (parameter?.ToString() == "loading" && value is bool isLoading && isLoading)
+            return Colors.Orange;
+            
+        return value is bool isStreaming && isStreaming ? Colors.Red : Colors.Blue;
+    }
+
+    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
+
+public class StreamStatusConverter : IValueConverter
+{
+    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+    {
+        if (parameter?.ToString() == "loading")
+        {
+            return value is bool isLoading && isLoading ? "🔄 Connecting..." : "";
+        }
+        
+        return value is bool isStreaming && isStreaming ? "🔴 Live" : "⚫ Offline";
+    }
+
+    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
+
+public class StreamStatusColorConverter : IValueConverter
+{
+    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+    {
+        if (parameter?.ToString() == "loading" && value is bool isLoading && isLoading)
+            return Colors.Orange;
+            
+        return value is bool isStreaming && isStreaming ? Colors.Red : Colors.Gray;
+    }
+
+    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
+
+public class StreamButtonEnabledConverter : IValueConverter
+{
+    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+    {
+        // Button is enabled when not loading and not busy
+        return !(value is bool isLoadingOrBusy && isLoadingOrBusy);
+    }
+
+    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}

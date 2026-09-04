@@ -3,6 +3,7 @@ using TapoMaui.Services;
 using TapoMaui.ViewModels;
 using TapoMaui.Views;
 using TapoMaui.Converters;
+using CommunityToolkit.Maui;
 
 namespace TapoMaui;
 
@@ -13,6 +14,7 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
+            .UseMauiCommunityToolkitMediaElement()
             .ConfigureFonts(fonts =>
             {
                 // Using system default fonts
@@ -39,6 +41,11 @@ public static class MauiProgram
         builder.Services.AddSingleton<IsNotNullConverter>();
         builder.Services.AddSingleton<BoolToColorConverter>();
         builder.Services.AddSingleton<ColorToColorConverter>();
+        builder.Services.AddSingleton<StreamButtonTextConverter>();
+        builder.Services.AddSingleton<StreamButtonColorConverter>();
+        builder.Services.AddSingleton<StreamStatusConverter>();
+        builder.Services.AddSingleton<StreamStatusColorConverter>();
+        builder.Services.AddSingleton<StreamButtonEnabledConverter>();
 
 #if DEBUG
         builder.Logging.AddDebug();

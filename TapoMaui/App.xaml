@@ -16,6 +16,11 @@
             <converters:IsNotNullConverter x:Key="IsNotNullConverter" />
             <converters:BoolToColorConverter x:Key="BoolToColorConverter" />
             <converters:ColorToColorConverter x:Key="ColorToColorConverter" />
+            <converters:StreamButtonTextConverter x:Key="StreamButtonTextConverter" />
+            <converters:StreamButtonColorConverter x:Key="StreamButtonColorConverter" />
+            <converters:StreamStatusConverter x:Key="StreamStatusConverter" />
+            <converters:StreamStatusColorConverter x:Key="StreamStatusColorConverter" />
+            <converters:StreamButtonEnabledConverter x:Key="StreamButtonEnabledConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

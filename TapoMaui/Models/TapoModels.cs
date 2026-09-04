@@ -13,6 +13,7 @@ public enum DeviceType
     PowerStrip,
     PowerStripEnergyMonitoring,
     Hub,
+    Camera,
     CameraPtz,
     Switch,
     Sensor,

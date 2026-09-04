@@ -40,6 +40,9 @@ public class TapoApiClient : ITapoApiClient
         _password = password ?? string.Empty;
         System.Diagnostics.Debug.WriteLine($"Local camera credentials set for: {username}");
     }
+    
+    public string GetUsername() => _username;
+    public string GetPassword() => _password;
 
     public async Task<IEnumerable<DiscoveredDevice>> DiscoverDevicesAsync(string targetNetwork = "", int timeoutSeconds = 10)
     {

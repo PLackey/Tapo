@@ -20,6 +20,8 @@ public interface ITapoApiClient
     
     // Add methods to set credentials dynamically
     void SetCredentials(string username, string password);
+    string GetUsername();
+    string GetPassword();
 }
 
 public interface ITapoDevice
