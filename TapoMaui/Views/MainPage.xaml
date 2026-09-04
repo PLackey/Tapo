@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="TapoMaui.Views.MainPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:TapoMaui.ViewModels"
+             xmlns:views="clr-namespace:TapoMaui.Views"
+             x:DataType="vm:MainViewModel"
+             Title="{Binding Title}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Configuration Section -->
+        <StackLayout Grid.Row="0" Padding="20" BackgroundColor="{AppThemeBinding Light=#F0F0F0, Dark=#2D2D30}">
+            <Label Text="Tapo Credentials" FontSize="18" FontAttributes="Bold" Margin="0,0,0,10" />
+            
+            <Entry Text="{Binding Username}"
+                   Placeholder="Local Camera Username (create in Tapo mobile app first)"
+                   Margin="0,5" />
+            
+            <Entry Text="{Binding Password}"
+                   Placeholder="Local Camera Password (create in Tapo mobile app first)"
+                   IsPassword="True"
+                   Margin="0,5" />
+            
+            <Entry Text="{Binding NetworkTarget}"
+                   Placeholder="Network (optional - auto-detects all networks if empty)"
+                   Margin="0,5" />
+            
+            <Grid Margin="0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                
+                <Button Grid.Column="0"
+                        Text="Discover"
+                        Command="{Binding DiscoverDevicesCommand}"
+                        BackgroundColor="{StaticResource Primary}"
+                        TextColor="White"
+                        Margin="0,0,3,0" />
+                
+                <Button Grid.Column="1"
+                        Text="Refresh"
+                        Command="{Binding RefreshDevicesCommand}"
+                        BackgroundColor="{StaticResource Secondary}"
+                        TextColor="White"
+                        Margin="3,0" />
+                
+                <Button Grid.Column="2"
+                        Text="Clear"
+                        Command="{Binding ClearDevicesCommand}"
+                        BackgroundColor="Gray"
+                        TextColor="White"
+                        Margin="3,0" />
+                
+                <Button Grid.Column="3"
+                        Text="Reset"
+                        Command="{Binding ClearCredentialsCommand}"
+                        BackgroundColor="DarkRed"
+                        TextColor="White"
+                        Margin="3,0,0,0" />
+            </Grid>
+            
+            <ActivityIndicator IsVisible="{Binding IsDiscovering}"
+                               IsRunning="{Binding IsDiscovering}"
+                               Color="{StaticResource Primary}"
+                               Margin="0,10" />
+            
+            <Label Text="{Binding ErrorMessage}"
+                   TextColor="Red"
+                   IsVisible="{Binding ErrorMessage, Converter={StaticResource IsNotNullConverter}}"
+                   Margin="0,5" />
+        </StackLayout>
+
+        <!-- Devices Section -->
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding Devices}"
+                        SelectionMode="Single"
+                        SelectedItem="{Binding SelectedDevice}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="vm:DeviceItemViewModel">
+                    <views:DeviceItemView />
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            
+            <CollectionView.EmptyView>
+                <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Padding="20">
+                    <Label Text="No devices found"
+                           HorizontalOptions="Center"
+                           TextColor="Gray"
+                           FontSize="16" />
+                    <Label Text="Tap 'Discover' to automatically scan all networks"
+                           HorizontalOptions="Center"
+                           TextColor="Gray"
+                           FontSize="14" />
+                    <Label Text="Discovery works without credentials"
+                           HorizontalOptions="Center"
+                           TextColor="Gray"
+                           FontSize="12"
+                           Margin="0,5,0,0" />
+                    <Label Text="For camera control: create local account in Tapo mobile app first"
+                           HorizontalOptions="Center"
+                           TextColor="Orange"
+                           FontSize="11"
+                           Margin="0,2,0,0" />
+                </StackLayout>
+            </CollectionView.EmptyView>
+        </CollectionView>
+    </Grid>
+</ContentPage>
