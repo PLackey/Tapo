@@ -45,7 +45,7 @@ public partial class VideoPlayerPage : ContentPage
         }
         else
         {
-            await DisplayAlert("No Stream", "Start streaming first to use native RTSP player.", "OK");
+            await DisplayAlertAsync("No Stream", "Start streaming first to use native RTSP player.", "OK");
         }
     }
 
@@ -78,7 +78,7 @@ public partial class VideoPlayerPage : ContentPage
             var streamUrl = _viewModel.StreamUrl;
             if (string.IsNullOrEmpty(streamUrl))
             {
-                await DisplayAlert("Error", "No stream URL available. Start streaming first.", "OK");
+                await DisplayAlertAsync("Error", "No stream URL available. Start streaming first.", "OK");
                 return;
             }
 
@@ -99,7 +99,7 @@ public partial class VideoPlayerPage : ContentPage
                          $"🔗 Stream URL:\n" +
                          $"{Services.RTSPVideoService.MaskPassword(streamUrl)}";
 
-            await DisplayAlert("📹 Open Camera Stream", message, "Got it!");
+            await DisplayAlertAsync("📹 Open Camera Stream", message, "Got it!");
             
             // Try to launch VLC if possible (platform specific)
             try
@@ -123,7 +123,7 @@ public partial class VideoPlayerPage : ContentPage
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Error", $"Failed to copy URL: {ex.Message}", "OK");
+            await DisplayAlertAsync("Error", $"Failed to copy URL: {ex.Message}", "OK");
         }
     }
 
