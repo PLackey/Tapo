@@ -18,6 +18,17 @@ A .NET MAUI application for controlling TP-Link Tapo smart devices built with .N
 - **Smart Plugs**: P100, P105, P110, P110M, P115 (on/off and energy monitoring)
 - **Power Strips**: P300, P304M, P306, P316M (multi-outlet control)
 - **Hubs**: H100 (child device management)
+
+## ⚖️ Legal Disclaimer
+
+**🚨 IMPORTANT:** This software is provided "AS IS" with **NO WARRANTY**. See [DISCLAIMER.md](DISCLAIMER.md) for complete legal terms including:
+
+- **US & UK warranty disclaimers** and liability limitations
+- **Network security** and privacy responsibilities  
+- **RTSP streaming** security considerations
+- **Regulatory compliance** requirements
+
+**⚠️ Use at your own risk.** Developer not liable for device damage, data loss, privacy breaches, or network security issues.
 - **Cameras**: C210, C220, C225, C325WB, C520WS, TC40, TC70 (basic control)
 
 ## Requirements

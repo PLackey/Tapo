@@ -1,0 +1,16 @@
+TAPOMAUI SOFTWARE DISCLAIMER
+
+WARRANTY DISCLAIMER:
+This software is provided "AS IS" without warranties of any kind. No warranty of merchantability, fitness for purpose, or non-infringement is provided.
+
+LIMITATION OF LIABILITY:
+Developer liability is limited to the maximum extent permitted by law. Not liable for indirect, incidental, or consequential damages including data loss, privacy breaches, or device damage.
+
+NETWORK SECURITY NOTICE:
+RTSP streams may be unencrypted. Users responsible for network security and privacy compliance.
+
+JURISDICTION:
+US: Governed by applicable state law. UK: Subject to Consumer Rights Act 2015 where applicable.
+
+See full DISCLAIMER.md for complete terms.
+Use at your own risk.
